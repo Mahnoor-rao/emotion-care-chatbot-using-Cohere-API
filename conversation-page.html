@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <script src="{{ url_for('static', filename='conversation-script.js') }}"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-image: url('/static/2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-y: auto;
+            
+        }
+
+        header {
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 1em;
+            text-align: center;
+            align-items: center;
+            height: 80px;
+            margin-top: 0;
+            position: fixed; /* Fix the header at the top */
+            width: 100%; /* Occupy full width */
+            z-index: 9999; /* Ensure it stays above other content */
+          }   
+          h1 {
+    margin: -60px; /* Remove margin to ensure text stays within the header */
+    padding: -60px; /* Remove padding to ensure text stays within the header */
+   }
+
+        .chat-container {
+            position: fixed;
+            bottom: 50px;
+            flex: 1; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #b4e0fd;
+            box-shadow: 0 0 10px rgba(57, 181, 197, 0.384);
+            border-radius: 10px;
+           
+            flex-direction: column;
+            overflow-y: auto;
+            max-height: 78%;
+        }
+
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .user-message {
+            background-color: #68a3dd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            max-width: 70%;
+            align-self: flex-end; /* Align user messages to the right */
+        }
+
+        .bot-message {
+            background-color: #f8f9fa;
+            color: #000000;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            max-width: 90%;
+            align-self: flex-start; /* Align bot responses to the left */
+            word-wrap: break-word;
+            
+        }
+        .bot-message-container {
+    display: flex;
+    align-items: center;
+    background-size: 50px 50px; /* Adjust size to fit your logo */
+    background-repeat: no-repeat;
+    padding-left: 60px; /* Ensure space for the logo */
+    border-radius: 1%;
+}
+.user-message-container {
+    display: flex;
+    align-items: center;
+    background-size: 50px 50px; /* Adjust size to fit your logo */
+    background-repeat: no-repeat;
+    padding-left: 60px; /* Ensure space for the logo */
+    border-radius: 1%;
+
+}
+
+.bot-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background-image: url('/static/logo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 1%;
+}
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-right: 350px;
+            background-image: url('/static/logo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 70%;
+        }
+
+        #userInput {
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            width: 80%;
+        }
+
+        footer {
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 1em;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('send_static', path='logo.jpg') }}" alt="Logo" class="logo">
+        <h1>EmoCare Chatbot</h1>
+    </header>
+    <div id="dataset-container"></div>
+    <main></main>
+    <div class="chat-container" id="chat-container">
+        <div id="messages-container" class="flex-container">
+            <div id="userMessages" class="message-container"></div>
+            <!-- Separate container for bot responses -->
+            <div id="botResponses" class="message-container"></div>
+        </div>
+        <form id="messageForm" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.text.label }}
+            {{ form.text(size=32, id="userInput") }}
+            {{ form.submit }}
+            <button type="button" onclick="clearFields()">Clear</button>
+        </form>
+        {% if output %}
+        <div>
+            <h3>Chatti's Response:</h3>
+            <div class="message-wrapper">
+                <div class="bot-logo"></div>
+                <p class="bot-message">{{ output }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <footer>
+        &copy; 2024 Chatbot for You!
+    </footer>
+</body>
+
+</html>
