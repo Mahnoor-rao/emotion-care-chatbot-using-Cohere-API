@@ -1,5 +1,5 @@
 Repository folders should be kept as:
-# Folders should be kept like this:
+
 Chatbot (main folder)
 
 |__chat_rules (sub folder)
