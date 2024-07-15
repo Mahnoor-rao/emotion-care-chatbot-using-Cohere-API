@@ -1,3 +1,16 @@
+Repository folders should be kept as:
+Chatbot (main folder)
+|__chat_rules (sub folder)
+   |__Chat_rules
+|__static (sub folder)
+   |__conversation-script.js
+   |__2.jpg
+   |__logo.jpg
+   |__user.jpg
+|__templates (sub folder)
+   |__conversation-page.html
+|__app.py
+
 ```markdown
 # EmoCare Chatbot
 
@@ -19,7 +32,7 @@ To run EmoCare Chatbot locally or deploy it:
 
 1. Clone the repository:
    ```bash
-   git clone my gitbut website 
+   git clone https://github.com/Mahnoor-rao/emotion-care-chatbot-using-Cohere-API 
    cd emocare-chatbot
    ```
 
