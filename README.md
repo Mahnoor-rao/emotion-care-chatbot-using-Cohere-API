@@ -1,14 +1,25 @@
 Repository folders should be kept as:
+# Folders should be kept like this:
 Chatbot (main folder)
+
 |__chat_rules (sub folder)
+```bash
    |__Chat_rules
+```
 |__static (sub folder)
+```bash
    |__conversation-script.js
+
    |__2.jpg
+
    |__logo.jpg
+
    |__user.jpg
+```
 |__templates (sub folder)
+```bash
    |__conversation-page.html
+   ```
 |__app.py
 
 ```markdown
